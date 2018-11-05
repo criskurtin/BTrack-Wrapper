@@ -1,0 +1,15 @@
+C:\Users\ckurtin\source\repos\BTrack_Example\BTrack_Example\bin\Debug\BTrack_Example.exe.config
+C:\Users\ckurtin\source\repos\BTrack_Example\BTrack_Example\bin\Debug\BTrack_Example.exe
+C:\Users\ckurtin\source\repos\BTrack_Example\BTrack_Example\bin\Debug\BTrack_Example.pdb
+C:\Users\ckurtin\source\repos\BTrack_Example\BTrack_Example\bin\Debug\BTrackWrapper.dll
+C:\Users\ckurtin\source\repos\BTrack_Example\BTrack_Example\bin\Debug\NAudio.dll
+C:\Users\ckurtin\source\repos\BTrack_Example\BTrack_Example\bin\Debug\BTrackWrapper.pdb
+C:\Users\ckurtin\source\repos\BTrack_Example\BTrack_Example\bin\Debug\NAudio.xml
+C:\Users\ckurtin\source\repos\BTrack_Example\BTrack_Example\obj\Debug\BTrack_Example.csprojResolveAssemblyReference.cache
+C:\Users\ckurtin\source\repos\BTrack_Example\BTrack_Example\obj\Debug\BTrack_Example.Form1.resources
+C:\Users\ckurtin\source\repos\BTrack_Example\BTrack_Example\obj\Debug\BTrack_Example.Properties.Resources.resources
+C:\Users\ckurtin\source\repos\BTrack_Example\BTrack_Example\obj\Debug\BTrack_Example.csproj.GenerateResource.cache
+C:\Users\ckurtin\source\repos\BTrack_Example\BTrack_Example\obj\Debug\BTrack_Example.csproj.CoreCompileInputs.cache
+C:\Users\ckurtin\source\repos\BTrack_Example\BTrack_Example\obj\Debug\BTrack_Example.csproj.CopyComplete
+C:\Users\ckurtin\source\repos\BTrack_Example\BTrack_Example\obj\Debug\BTrack_Example.exe
+C:\Users\ckurtin\source\repos\BTrack_Example\BTrack_Example\obj\Debug\BTrack_Example.pdb
