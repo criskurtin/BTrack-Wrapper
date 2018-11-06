@@ -65,8 +65,27 @@ namespace BTrack_Example
             chart.Series["wave"].ChartArea = "ChartArea1";
             chart.Series["wave"].Color = Color.Green;
             chart.Series["wave"].IsVisibleInLegend = false;
+            chart.BackColor = SystemColors.ControlDarkDark;
+            chart.ChartAreas["ChartArea1"].BackColor = Color.Black;
+            chart.ChartAreas["ChartArea1"].AxisX.MajorGrid.Enabled = false;
+            chart.ChartAreas["ChartArea1"].AxisY.MajorGrid.Enabled = false;
+            chart.ChartAreas["ChartArea1"].AxisX.MinorGrid.Enabled = false;
+            chart.ChartAreas["ChartArea1"].AxisY.MinorGrid.Enabled = false;
+            chart.ChartAreas["ChartArea1"].AxisX.LabelStyle.Enabled = false;
             chart.ChartAreas["ChartArea1"].AxisY.LabelStyle.Enabled = false;
+            chart.ChartAreas["ChartArea1"].AxisX.MajorTickMark.Enabled = false;
+            chart.ChartAreas["ChartArea1"].AxisY.MajorTickMark.Enabled = false;
+            chart.ChartAreas["ChartArea1"].AxisX.MinorTickMark.Enabled = false;
+            chart.ChartAreas["ChartArea1"].AxisY.MinorTickMark.Enabled = false;
+            chart.ChartAreas["ChartArea1"].AxisX.LineWidth = 0;
+            chart.ChartAreas["ChartArea1"].AxisY.LineWidth = 0;
+            chart.ChartAreas["ChartArea1"].AxisX.IsMarginVisible = false;
+            chart.ChartAreas["ChartArea1"].AxisY.IsMarginVisible = false;
             chart.Legends[0].Enabled = false;
+            chart.ChartAreas["ChartArea1"].AxisY.Minimum = -1;
+            chart.ChartAreas["ChartArea1"].AxisY.Maximum = 1;
+            chart.ChartAreas["ChartArea1"].AxisX.Minimum = 0;
+            chart.ChartAreas["ChartArea1"].AxisX.Maximum = 256;
 
         }
 
@@ -89,14 +108,14 @@ namespace BTrack_Example
                     frame.Add(sample32);
                 }
                 if (index == 0) { 
-                    var point = (float)sample32;
+                    var point = sample32;
                     chart.Invoke(new Action(() => { chart.Series["wave"].Points.Add(point); }));
                 }
 
             }
 
             if (chart.Series["wave"].Points.Count > 256) {
-                chart.Invoke(new Action(() => { chart.ChartAreas["ChartArea1"].AxisX.ScaleView.Position = chart.Series["wave"].Points.Count - 256; chart.ChartAreas["ChartArea1"].AxisX.ScaleView.Size = 256; chart.Series["wave"].Points.RemoveAt(0); }));
+                chart.Invoke(new Action(() => { chart.Series["wave"].Points.RemoveAt(0); }));
 
             }
 
@@ -121,7 +140,7 @@ namespace BTrack_Example
             // What to do if beat is detected
             if (btw.beatDueInCurrentFrameWrapper())
             {
-                chart.Invoke(new Action(() => { chart.Series["wave"].Points.Last().BorderWidth = 10; chart.Series["wave"].Points.Last().Color = Color.Red; }));
+                chart.Invoke(new Action(() => { chart.Series["wave"].Points.Last().BorderWidth = 5; chart.Series["wave"].Points.Last().Color = Color.Red; }));
                 labelTempo.Invoke(new Action(() => { labelTempo.Text = "Tempo: " + Math.Round(btw.getCurrentTempoEstimate(), 1).ToString(); }));
                 labelBPM.Invoke(new Action(() => { labelBPM.BackColor = Color.Red; }));
 
@@ -169,30 +188,6 @@ namespace BTrack_Example
             waveIn.StopRecording();
         }
 
-        private void AudioDevices_SelectedDeviceChanged(object sender, EventArgs e)
-        {
-            if (!nodevices)
-            {
-                waveIn.RecordingStopped += WaveIn_RecordingReset;
-                waveIn.StopRecording();
-            }
-        }
-
-        private void WaveIn_RecordingReset(object sender, StoppedEventArgs e)
-        {
-            // reset recording
-            waveIn.DataAvailable -= OnDataAvailable;
-            waveIn.Dispose();
-            Trace.WriteLine("Wave In device is now paused.");
-            waveIn.DeviceNumber = AudioDevices.SelectedIndex;
-            waveIn.BufferMilliseconds = 24;
-            waveIn.WaveFormat = new WaveFormat(samplerate, channels);
-            waveIn.DataAvailable += OnDataAvailable;
-            waveIn.StartRecording();
-            Trace.WriteLine("Recording - Sample rate: " + waveIn.WaveFormat.SampleRate.ToString() + "; Bit depth: " + waveIn.WaveFormat.BitsPerSample.ToString() + "; Channels: " + waveIn.WaveFormat.Channels.ToString());
-            waveIn.RecordingStopped -= WaveIn_RecordingReset;
-        }
-
         private void WaveIn_RecordingDisconnected(object sender, StoppedEventArgs e)
         {
             waveIn.DataAvailable -= OnDataAvailable;
@@ -204,17 +199,19 @@ namespace BTrack_Example
         private void buttonStart_Click(object sender, EventArgs e)
         {
             startAudio();
-            buttonStart.Enabled = !buttonStart.Enabled;
-            buttonStop.Enabled = !buttonStop.Enabled;
-            buttonReset.Enabled = !buttonReset.Enabled;
+            buttonStart.Enabled = false;
+            buttonStop.Enabled = true;
+            buttonReset.Enabled = true;
+            AudioDevices.Enabled = false;
         }
 
         private void buttonStop_Click(object sender, EventArgs e)
         {
             stopAudio();
-            buttonStart.Enabled = !buttonStart.Enabled;
-            buttonStop.Enabled = !buttonStop.Enabled;
-            buttonReset.Enabled = !buttonReset.Enabled;
+            buttonStart.Enabled = true;
+            buttonStop.Enabled = false;
+            buttonReset.Enabled = false;
+            AudioDevices.Enabled = true;
         }
 
         private void buttonReset_Click(object sender, EventArgs e)

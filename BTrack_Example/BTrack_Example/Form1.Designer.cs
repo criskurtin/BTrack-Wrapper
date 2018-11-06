@@ -59,7 +59,7 @@
             this.labelBPM.AutoSize = true;
             this.labelBPM.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.labelBPM.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelBPM.Location = new System.Drawing.Point(239, 57);
+            this.labelBPM.Location = new System.Drawing.Point(320, 57);
             this.labelBPM.Name = "labelBPM";
             this.labelBPM.Size = new System.Drawing.Size(0, 24);
             this.labelBPM.TabIndex = 1;
@@ -69,9 +69,8 @@
             this.AudioDevices.FormattingEnabled = true;
             this.AudioDevices.Location = new System.Drawing.Point(12, 97);
             this.AudioDevices.Name = "AudioDevices";
-            this.AudioDevices.Size = new System.Drawing.Size(288, 21);
+            this.AudioDevices.Size = new System.Drawing.Size(760, 21);
             this.AudioDevices.TabIndex = 2;
-            this.AudioDevices.SelectedIndexChanged += new System.EventHandler(this.AudioDevices_SelectedDeviceChanged);
             // 
             // labelBeatCount
             // 
@@ -85,7 +84,7 @@
             // 
             // buttonStart
             // 
-            this.buttonStart.Location = new System.Drawing.Point(142, 128);
+            this.buttonStart.Location = new System.Drawing.Point(616, 128);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(75, 23);
             this.buttonStart.TabIndex = 4;
@@ -95,7 +94,7 @@
             // 
             // buttonStop
             // 
-            this.buttonStop.Location = new System.Drawing.Point(223, 128);
+            this.buttonStop.Location = new System.Drawing.Point(697, 128);
             this.buttonStop.Name = "buttonStop";
             this.buttonStop.Size = new System.Drawing.Size(75, 23);
             this.buttonStop.TabIndex = 5;
@@ -129,7 +128,7 @@
             this.labelTempo.AutoSize = true;
             this.labelTempo.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.labelTempo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelTempo.Location = new System.Drawing.Point(171, 9);
+            this.labelTempo.Location = new System.Drawing.Point(320, 9);
             this.labelTempo.Name = "labelTempo";
             this.labelTempo.Size = new System.Drawing.Size(0, 24);
             this.labelTempo.TabIndex = 8;
@@ -146,7 +145,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart.Series.Add(series1);
-            this.chart.Size = new System.Drawing.Size(288, 180);
+            this.chart.Size = new System.Drawing.Size(761, 392);
             this.chart.TabIndex = 9;
             this.chart.Text = "chart1";
             // 
@@ -155,7 +154,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(310, 347);
+            this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.chart);
             this.Controls.Add(this.labelTempo);
             this.Controls.Add(this.buttonReset);
