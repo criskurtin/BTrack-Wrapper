@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.labelDBs = new System.Windows.Forms.Label();
             this.labelBPM = new System.Windows.Forms.Label();
             this.AudioDevices = new System.Windows.Forms.ComboBox();
@@ -37,6 +40,8 @@
             this.labelCAM = new System.Windows.Forms.Label();
             this.buttonReset = new System.Windows.Forms.Button();
             this.labelTempo = new System.Windows.Forms.Label();
+            this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             this.SuspendLayout();
             // 
             // labelDBs
@@ -129,12 +134,29 @@
             this.labelTempo.Size = new System.Drawing.Size(0, 24);
             this.labelTempo.TabIndex = 8;
             // 
+            // chart
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart.Legends.Add(legend1);
+            this.chart.Location = new System.Drawing.Point(11, 157);
+            this.chart.Name = "chart";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart.Series.Add(series1);
+            this.chart.Size = new System.Drawing.Size(288, 180);
+            this.chart.TabIndex = 9;
+            this.chart.Text = "chart1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(310, 163);
+            this.ClientSize = new System.Drawing.Size(310, 347);
+            this.Controls.Add(this.chart);
             this.Controls.Add(this.labelTempo);
             this.Controls.Add(this.buttonReset);
             this.Controls.Add(this.labelCAM);
@@ -148,6 +170,7 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Beat Tracking Example";
+            ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -164,6 +187,7 @@
         private System.Windows.Forms.Label labelCAM;
         private System.Windows.Forms.Button buttonReset;
         private System.Windows.Forms.Label labelTempo;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart;
     }
 }
 

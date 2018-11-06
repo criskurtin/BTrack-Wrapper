@@ -12,6 +12,7 @@ using NAudio.Wave;
 using NAudio.Dsp;
 using BWrapper;
 using System.Diagnostics;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace BTrack_Example
 {
@@ -59,6 +60,14 @@ namespace BTrack_Example
             buttonStart.Enabled = true;
             buttonReset.Enabled = false;
 
+            chart.Series.Add("wave");
+            chart.Series["wave"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            chart.Series["wave"].ChartArea = "ChartArea1";
+            chart.Series["wave"].Color = Color.Green;
+            chart.Series["wave"].IsVisibleInLegend = false;
+            chart.ChartAreas["ChartArea1"].AxisY.LabelStyle.Enabled = false;
+            chart.Legends[0].Enabled = false;
+
         }
 
         // Processing Wave In data
@@ -79,6 +88,16 @@ namespace BTrack_Example
                 {
                     frame.Add(sample32);
                 }
+                if (index == 0) { 
+                    var point = (float)sample32;
+                    chart.Invoke(new Action(() => { chart.Series["wave"].Points.Add(point); }));
+                }
+
+            }
+
+            if (chart.Series["wave"].Points.Count > 256) {
+                chart.Invoke(new Action(() => { chart.ChartAreas["ChartArea1"].AxisX.ScaleView.Position = chart.Series["wave"].Points.Count - 256; chart.ChartAreas["ChartArea1"].AxisX.ScaleView.Size = 256; chart.Series["wave"].Points.RemoveAt(0); }));
+
             }
 
             // Convert list to array
@@ -102,6 +121,7 @@ namespace BTrack_Example
             // What to do if beat is detected
             if (btw.beatDueInCurrentFrameWrapper())
             {
+                chart.Invoke(new Action(() => { chart.Series["wave"].Points.Last().BorderWidth = 10; chart.Series["wave"].Points.Last().Color = Color.Red; }));
                 labelTempo.Invoke(new Action(() => { labelTempo.Text = "Tempo: " + Math.Round(btw.getCurrentTempoEstimate(), 1).ToString(); }));
                 labelBPM.Invoke(new Action(() => { labelBPM.BackColor = Color.Red; }));
 
