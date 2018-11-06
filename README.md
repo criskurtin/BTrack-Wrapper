@@ -10,17 +10,13 @@ Usage:
 
 **2.** Add reference to compiled BTrackWrapper.dll to your C# project
 
-**3.** Add 
+**3.** Add the namespace
 
 		using BWrapper; 
 
-	to your source
-
-**4.** Create a new BTrackWrapper object to interface with library,ie.: 
+**4.** Create a new BTrackWrapper object to interface with library, with first integer argument being hopSize, second being frameSize,ie.: 
 
 		BTrackWrapper btw = new BTrackWrapper(512, 1024); 
-
-	first integer argument being hopSize, second being frameSize
 
 **5.** Fill the array with samples (create a frame)
 
