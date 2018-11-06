@@ -2,6 +2,8 @@
 A CLI library wrapper for adamstark's BTrack library
 ====================================================
 
+Find the original library here: https://github.com/adamstark/BTrack/
+
 Usage:
 ---------------
 1. Compile source with Visual Studio 2017
