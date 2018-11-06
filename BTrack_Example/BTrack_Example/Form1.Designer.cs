@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.labelDBs = new System.Windows.Forms.Label();
             this.labelBPM = new System.Windows.Forms.Label();
             this.AudioDevices = new System.Windows.Forms.ComboBox();
@@ -59,13 +59,15 @@
             this.labelBPM.AutoSize = true;
             this.labelBPM.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.labelBPM.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelBPM.Location = new System.Drawing.Point(320, 57);
+            this.labelBPM.Location = new System.Drawing.Point(108, 57);
             this.labelBPM.Name = "labelBPM";
             this.labelBPM.Size = new System.Drawing.Size(0, 24);
             this.labelBPM.TabIndex = 1;
             // 
             // AudioDevices
             // 
+            this.AudioDevices.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.AudioDevices.FormattingEnabled = true;
             this.AudioDevices.Location = new System.Drawing.Point(12, 97);
             this.AudioDevices.Name = "AudioDevices";
@@ -84,6 +86,7 @@
             // 
             // buttonStart
             // 
+            this.buttonStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonStart.Location = new System.Drawing.Point(616, 128);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(75, 23);
@@ -94,6 +97,7 @@
             // 
             // buttonStop
             // 
+            this.buttonStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonStop.Location = new System.Drawing.Point(697, 128);
             this.buttonStop.Name = "buttonStop";
             this.buttonStop.Size = new System.Drawing.Size(75, 23);
@@ -125,26 +129,30 @@
             // 
             // labelTempo
             // 
+            this.labelTempo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelTempo.AutoSize = true;
             this.labelTempo.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.labelTempo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelTempo.Location = new System.Drawing.Point(320, 9);
+            this.labelTempo.Location = new System.Drawing.Point(640, 9);
             this.labelTempo.Name = "labelTempo";
             this.labelTempo.Size = new System.Drawing.Size(0, 24);
             this.labelTempo.TabIndex = 8;
             // 
             // chart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart.Legends.Add(legend1);
+            this.chart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            chartArea4.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chart.Legends.Add(legend4);
             this.chart.Location = new System.Drawing.Point(11, 157);
             this.chart.Name = "chart";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart.Series.Add(series1);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chart.Series.Add(series4);
             this.chart.Size = new System.Drawing.Size(761, 392);
             this.chart.TabIndex = 9;
             this.chart.Text = "chart1";
@@ -165,8 +173,7 @@
             this.Controls.Add(this.AudioDevices);
             this.Controls.Add(this.labelBPM);
             this.Controls.Add(this.labelDBs);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(380, 320);
             this.Name = "Form1";
             this.Text = "Beat Tracking Example";
             ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
