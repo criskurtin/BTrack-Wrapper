@@ -144,6 +144,8 @@
             this.Controls.Add(this.AudioDevices);
             this.Controls.Add(this.labelBPM);
             this.Controls.Add(this.labelDBs);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Beat Tracking Example";
             this.ResumeLayout(false);
