@@ -36,6 +36,7 @@
             this.buttonStop = new System.Windows.Forms.Button();
             this.labelCAM = new System.Windows.Forms.Label();
             this.buttonReset = new System.Windows.Forms.Button();
+            this.labelTempo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelDBs
@@ -118,12 +119,23 @@
             this.buttonReset.UseVisualStyleBackColor = true;
             this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
             // 
+            // labelTempo
+            // 
+            this.labelTempo.AutoSize = true;
+            this.labelTempo.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.labelTempo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelTempo.Location = new System.Drawing.Point(125, 9);
+            this.labelTempo.Name = "labelTempo";
+            this.labelTempo.Size = new System.Drawing.Size(0, 24);
+            this.labelTempo.TabIndex = 8;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(310, 163);
+            this.Controls.Add(this.labelTempo);
             this.Controls.Add(this.buttonReset);
             this.Controls.Add(this.labelCAM);
             this.Controls.Add(this.buttonStop);
@@ -149,6 +161,7 @@
         private System.Windows.Forms.Button buttonStop;
         private System.Windows.Forms.Label labelCAM;
         private System.Windows.Forms.Button buttonReset;
+        private System.Windows.Forms.Label labelTempo;
     }
 }
 
