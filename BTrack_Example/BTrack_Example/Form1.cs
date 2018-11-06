@@ -18,17 +18,17 @@ namespace BTrack_Example
     public partial class Form1 : Form
     {
         ////
-        // WaveIn Objects
+        // Variables and Objects
         ////
-        WaveInEvent waveIn = new WaveInEvent();
-        int samplerate = 44100;
-        int channels = 2;
-        private Random rnd = new Random();
-        BTrackWrapper btw = new BTrackWrapper(512, 1024);
+        WaveInEvent waveIn = new WaveInEvent();                                 // NAudio WaveIn event - used for real-time input sampling 
+        int samplerate = 44100;                                                 // samplerate to which input will be set
+        int channels = 2;                                                       // number of input channels (mono/stereo)
+        private Random rnd = new Random();                                      // random number generator - used to create variations in duration of 'takes'
+        BTrackWrapper btw = new BTrackWrapper(512, 1024);                       // main object of interest - BTrack Wrapper object for interfacing the BTrack library
         bool nodevices = false;
-        int beatsdetected = 0;
-        BiQuadFilter lpf = BiQuadFilter.LowPassFilter(44100.0f, 130.0f, 30.0f);
-        int[] beatarray = { 15, 23, 31 };
+        int beatsdetected = 0;                                                  // counter for detected beats
+        BiQuadFilter lpf = BiQuadFilter.LowPassFilter(44100.0f, 130.0f, 30.0f); // experimental filter (trying to improve beat tracker's response by cutting higher frequencies)
+        int[] beatarray = { 15, 23, 31 };                                       // part of randomizer
 
         public Form1()
         {
@@ -57,15 +57,15 @@ namespace BTrack_Example
 
         }
 
+        // Processing Wave In data
         private void OnDataAvailable(object sender, WaveInEventArgs args)
         {
             double sum = 0;
             List<double> frame = new List<double>();
-            // interpret as 16 bit audio
+            // interpret as 16 bit audio... Fill the list with samples (LRLRLRLR...)
             for (int index = 0; index < 2048; index += 2)
             {
-                short sample = (short)((args.Buffer[index + 1] << 8) |
-                        args.Buffer[index + 0]);
+                short sample = (short)((args.Buffer[index + 1] << 8) | args.Buffer[index + 0]);
                 // to floating point
                 var sample32 = sample / 32768.0;
                 sum += (sample32 * sample32);
@@ -77,18 +77,25 @@ namespace BTrack_Example
                 }
             }
 
+            // Convert list to array
             var framearray = frame.ToArray();
+
+            // some manual garbage collection
             GCHandle handle = GCHandle.Alloc(framearray, GCHandleType.Pinned);
-            var framePtr = handle.AddrOfPinnedObject();
+            IntPtr framePtr = handle.AddrOfPinnedObject();
+
+            // call ProcessAudioFrame - uses IntPtr to access the sample array
             btw.processAudioFrameWrapper(framePtr);
             framearray = null;
             framePtr = (IntPtr)null;
             frame.Clear();
 
+            // calculate the power of audio signal
             double rms = Math.Sqrt(sum / (2048));
             var decibel = 20 * Math.Log10(rms);
             labelDBs.Invoke(new Action(() => { labelDBs.Text = "Power: " + ((int)decibel).ToString() + " dB"; }));
 
+            // What to do if beat is detected
             if (btw.beatDueInCurrentFrameWrapper())
             {
                 labelBPM.Invoke(new Action(() => { labelBPM.BackColor = Color.Red; }));
@@ -122,7 +129,7 @@ namespace BTrack_Example
 
         private void startAudio()
         {
-            //run audio for beatmix
+            // run audio recording
             waveIn.DeviceNumber = AudioDevices.SelectedIndex;
             waveIn.BufferMilliseconds = 24;
             waveIn.WaveFormat = new WaveFormat(samplerate, channels);
@@ -133,7 +140,7 @@ namespace BTrack_Example
 
         private void stopAudio()
         {
-            //remove audio for beatmix
+            // stop audio recording
             waveIn.RecordingStopped += WaveIn_RecordingDisconnected;
             waveIn.StopRecording();
         }
@@ -149,6 +156,7 @@ namespace BTrack_Example
 
         private void WaveIn_RecordingReset(object sender, StoppedEventArgs e)
         {
+            // reset recording
             waveIn.DataAvailable -= OnDataAvailable;
             waveIn.Dispose();
             Trace.WriteLine("Wave In device is now paused.");
