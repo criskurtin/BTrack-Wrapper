@@ -14,13 +14,13 @@ Usage:
 
 		using BWrapper; 
 
-to your source
+	to your source
 
 4. Create a new BTrackWrapper object to interface with library,ie.: 
 
 		BTrackWrapper btw = new BTrackWrapper(512, 1024); 
 
-first integer argument being hopSize, second being frameSize
+	first integer argument being hopSize, second being frameSize
 
 5. Fill the array with samples (create a frame)
 
