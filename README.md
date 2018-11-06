@@ -12,13 +12,13 @@ Usage:
 
 3. Add 
 
-	using BWrapper; 
+		using BWrapper; 
 
 to your source
 
 4. Create a new BTrackWrapper object to interface with library,ie.: 
 
-	BTrackWrapper btw = new BTrackWrapper(512, 1024); 
+		BTrackWrapper btw = new BTrackWrapper(512, 1024); 
 
 first integer argument being hopSize, second being frameSize
 
@@ -26,11 +26,11 @@ first integer argument being hopSize, second being frameSize
 
 6. Call processAudioFrameWrapper with pointer to frame as an argument, ie.: 
 
-	btw.processAudioFrameWrapper(framePtr);
+		btw.processAudioFrameWrapper(framePtr);
 
 7. Check if beat has been detected in current frame by calling beatDueInCurrentFrameWrapper and checking the return value. ie.: 
 
-	if (btw.beatDueInCurrentFrameWrapper()) {do stuff here} 
+		if (btw.beatDueInCurrentFrameWrapper()) {do stuff here} 
 
 Example Source:
 ---------------
