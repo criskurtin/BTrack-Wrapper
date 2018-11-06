@@ -124,7 +124,7 @@
             this.labelTempo.AutoSize = true;
             this.labelTempo.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.labelTempo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelTempo.Location = new System.Drawing.Point(125, 9);
+            this.labelTempo.Location = new System.Drawing.Point(171, 9);
             this.labelTempo.Name = "labelTempo";
             this.labelTempo.Size = new System.Drawing.Size(0, 24);
             this.labelTempo.TabIndex = 8;

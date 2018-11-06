@@ -98,7 +98,7 @@ namespace BTrack_Example
             // What to do if beat is detected
             if (btw.beatDueInCurrentFrameWrapper())
             {
-                labelTempo.Invoke(new Action(() => { labelTempo.Text = btw.getCurrentTempoEstimate().ToString(); }));
+                labelTempo.Invoke(new Action(() => { labelTempo.Text = "Tempo: " + Math.Round(btw.getCurrentTempoEstimate(), 1).ToString(); }));
                 labelBPM.Invoke(new Action(() => { labelBPM.BackColor = Color.Red; }));
                 int beatskip = rnd.Next(1, 3);
 
