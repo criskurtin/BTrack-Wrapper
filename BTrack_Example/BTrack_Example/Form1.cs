@@ -29,6 +29,7 @@ namespace BTrack_Example
         int beatsdetected = 0;                                                  // counter for detected beats
         BiQuadFilter lpf = BiQuadFilter.LowPassFilter(44100.0f, 130.0f, 30.0f); // experimental filter (trying to improve beat tracker's response by cutting higher frequencies)
         int[] beatarray = { 15, 23, 31 };                                       // part of randomizer
+        int beatskip;
 
         public Form1()
         {
@@ -51,6 +52,9 @@ namespace BTrack_Example
             {
                 nodevices = true;
             }
+
+            beatskip = rnd.Next(0, 2);                                          // part of randomizer
+
             buttonStop.Enabled = false;
             buttonStart.Enabled = true;
             buttonReset.Enabled = false;
@@ -100,7 +104,6 @@ namespace BTrack_Example
             {
                 labelTempo.Invoke(new Action(() => { labelTempo.Text = "Tempo: " + Math.Round(btw.getCurrentTempoEstimate(), 1).ToString(); }));
                 labelBPM.Invoke(new Action(() => { labelBPM.BackColor = Color.Red; }));
-                int beatskip = rnd.Next(1, 3);
 
                 if ((beatsdetected == beatarray[beatskip] || beatsdetected >= 31) && decibel > -60.0) //&& beatsdetected % 2 == 1
                 {
@@ -112,14 +115,14 @@ namespace BTrack_Example
                     } while (nextcam == prevcam);
                     labelBPM.Invoke(new Action(() => { labelBPM.Text = nextcam; }));
                     //labelDBs.Invoke(new Action(() => { labelDBs.Text = btw.getCurrentTempoEstimate().ToString(); }));
-
+                    beatskip = rnd.Next(0, 2);
                     beatsdetected = 0;
                 }
                 else
                 {
                     beatsdetected += 1;
                 }
-                labelBeatCount.Invoke(new Action(() => { labelBeatCount.Text = "Beats Detected: " + beatsdetected.ToString(); }));
+                labelBeatCount.Invoke(new Action(() => { labelBeatCount.Text = "Beats Detected: " + beatsdetected.ToString() + " of " + beatarray[beatskip].ToString(); }));
             }
             else
             {
